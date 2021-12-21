@@ -29,6 +29,9 @@ RUN apt update \
     libgbm1 \
     libasound2 \
     libatspi2.0-0 \
+    # Needed by older Chromium only
+    libx11-xcb1 \
+    libxshmfence1 \
   && \
   apt purge --auto-remove -y
 
