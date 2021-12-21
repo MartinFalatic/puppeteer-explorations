@@ -11,6 +11,7 @@ services:
       - ./package.json:/myapp/package.json
       - ./package-lock.json:/myapp/package-lock.json
       - ./app:/myapp/app
+      - ./content:/myapp/content
       - ./output:/myapp/output
     ports:
       - "4242:3000"

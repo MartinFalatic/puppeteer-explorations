@@ -32,9 +32,12 @@ RUN apt update \
   && \
   apt purge --auto-remove -y
 
-    ADD package.json package-lock.json app ./
     RUN mkdir output
-    RUN npm ci
+    ADD package.json app content ./
+    #`npm ci` with a lockfile is preferable for production, but `npm install` allows fast iteration
+    #ADD package-lock.json ./
+    #RUN npm ci
+    RUN npm install
     RUN node node_modules/puppeteer/install.js
     RUN chmod -R o+rwx node_modules/puppeteer/.local-chromium
     ENTRYPOINT ["nodejs", "/myapp/app/app.js"]

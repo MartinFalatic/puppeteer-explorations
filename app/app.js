@@ -49,21 +49,32 @@ async function main() {
         });
         console.log('browser launched');
 
+        var page;
+        var call;
+
         // Take a screenshot of a page
-        const page_ss = await browser.newPage();
-        await page_ss.goto('https://www.example.com', {
+        page = await browser.newPage();
+        await page.goto('https://www.example.com', {
             waitUntil: 'networkidle2',
         });
-        const call_ss = await page_ss.screenshot({path: '/myapp/output/screenshot.png'});
-        await page_ss.close();
+        call = await page.screenshot({path: '/myapp/output/screenshot.png'});
+        await page.close();
 
         // Save a page as PDF
-        const page_pdf = await browser.newPage();
-        await page_pdf.goto('https://news.ycombinator.com', {
+        page = await browser.newPage();
+        await page.goto('https://news.ycombinator.com', {
             waitUntil: 'networkidle2',
         });
-        const call_pdf = await page_pdf.pdf({ path: '/myapp/output/screenshot.pdf', format: 'a4' });
-        await page_pdf.close();
+        call = await page.pdf({ path: '/myapp/output/screenshot.pdf', format: 'a4' });
+        await page.close();
+
+        // Save a page as PDF
+        page = await browser.newPage();
+        await page.goto('file:///myapp/content/index.html', {
+            waitUntil: 'networkidle2',
+        });
+        call = await page.pdf({ path: '/myapp/output/screenshot2.pdf', format: 'Legal' });
+        await page.close();
 
         await browser.close();
         console.log('browser closed');
