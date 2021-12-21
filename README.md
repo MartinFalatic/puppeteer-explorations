@@ -8,4 +8,6 @@ This is NOT production-ready code! It's meant to serve as a thin baseline for lo
 
 To run locally, `docker-compose up --build` should suffice
 
+A simple webpage is served at `localhost:4242` - a screenshot and PDF will be generated in `./output`
+
 Tested on Windows 10 via Docker, and should work on Mac and Linux just as well

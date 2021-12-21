@@ -54,7 +54,7 @@ async function main() {
         await page_ss.goto('https://www.example.com', {
             waitUntil: 'networkidle2',
         });
-        const call_ss = await page_ss.screenshot({path: '/opt/app/output/screenshot.png'});
+        const call_ss = await page_ss.screenshot({path: '/myapp/output/screenshot.png'});
         await page_ss.close();
 
         // Save a page as PDF
@@ -62,7 +62,7 @@ async function main() {
         await page_pdf.goto('https://news.ycombinator.com', {
             waitUntil: 'networkidle2',
         });
-        const call_pdf = await page_pdf.pdf({ path: '/opt/app/output/screenshot.pdf', format: 'a4' });
+        const call_pdf = await page_pdf.pdf({ path: '/myapp/output/screenshot.pdf', format: 'a4' });
         await page_pdf.close();
 
         await browser.close();

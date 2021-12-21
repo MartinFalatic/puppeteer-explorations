@@ -32,10 +32,9 @@ RUN apt update \
   && \
   apt purge --auto-remove -y
 
-    COPY package.json .
-    COPY package-lock.json .
+    ADD package.json package-lock.json app ./
+    RUN mkdir output
     RUN npm ci
     RUN node node_modules/puppeteer/install.js
     RUN chmod -R o+rwx node_modules/puppeteer/.local-chromium
-    #COPY app.js .
-    ENTRYPOINT ["nodejs", "/opt/app/app.js"]
+    ENTRYPOINT ["nodejs", "/myapp/app/app.js"]
