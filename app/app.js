@@ -37,10 +37,12 @@ async function main() {
         const browser = await puppeteer.launch({
             dumpio: true,  // You may see dbus errors
             headless: true,
-            executablePath: "./node_modules/puppeteer/.local-chromium/linux-938248/chrome-linux/chrome",  // puppeteer@~13.0.0
-            //executablePath: "./node_modules/puppeteer/.local-chromium/linux-884014/chrome-linux/chrome",  // puppeteer@~10.0.0, ~10.1.0
+            executablePath: "google-chrome-stable",  // not installing the puppeteer version of Chrome at all
+            // executablePath: "./node_modules/puppeteer/.local-chromium/linux-938248/chrome-linux/chrome",  // puppeteer@~13.0.0
+            // executablePath: "./node_modules/puppeteer/.local-chromium/linux-884014/chrome-linux/chrome",  // puppeteer@~10.0.0, ~10.1.0
             args: [
                 '--disable-gpu',
+                '--disable-software-rasterizer',
                 '--disable-dev-shm-usage',
                 '--disable-setuid-sandbox',
                 '--no-sandbox',
@@ -75,11 +77,6 @@ async function main() {
         await page.goto('file:///myapp/content/index.html', {
             waitUntil: 'networkidle2',
         });
-
-        // page.on("pageerror", function(err) {  
-        //     theTempValue = err.toString();
-        //     console.log("Page error: " + theTempValue); 
-        // });
 
         call = await page.screenshot({ path: '/myapp/output/screenshot2.png', format: 'a4', fullPage: true });
         call = await page.pdf({ path: '/myapp/output/screenshot2.pdf', format: 'Legal' });
